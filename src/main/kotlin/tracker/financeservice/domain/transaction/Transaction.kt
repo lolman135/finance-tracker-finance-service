@@ -13,4 +13,4 @@ data class Transaction(
     val createdAt: LocalDateTime
 )
 
-// Tgit ransaction is unredacted domain.
+// Transaction is unredacted domain. It's values cannot be changed during lifecycle of this domain
