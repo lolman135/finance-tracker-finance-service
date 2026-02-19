@@ -10,7 +10,6 @@ data class Account(
     val balance: Long,
     val currency: String,
     val userId: UUID,
-    val transactionIds: List<UUID>
 ) {
     fun rename(newName: String): Account{
         require(newName.isNotBlank()){"Name cannot be blank"}
@@ -23,6 +22,6 @@ data class Account(
             TransactionType.EXPENSE -> balance - transaction.amount
         }
 
-        return copy(balance = newBalance, transactionIds = transactionIds + transaction.id)
+        return copy(balance = newBalance)
     }
 }
