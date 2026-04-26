@@ -6,9 +6,9 @@ import java.util.UUID
 
 data class Account(
     val id: UUID,
-    val name: String,
+    val name: String?,
     val balance: Long,
-    val currency: String,
+    val currency: String = "USD",
     val userId: UUID,
 ) {
     fun rename(newName: String): Account{
