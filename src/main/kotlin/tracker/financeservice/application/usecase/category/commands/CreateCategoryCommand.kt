@@ -1,3 +1,5 @@
 package tracker.financeservice.application.usecase.category.commands
 
-data class CreateCategoryCommand(val name: String)
+import java.util.UUID
+
+data class CreateCategoryCommand(val name: String, val userId: UUID?, val type: String)

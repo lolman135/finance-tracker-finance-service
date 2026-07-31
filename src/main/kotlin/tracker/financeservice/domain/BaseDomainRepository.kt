@@ -1,10 +1,10 @@
 package tracker.financeservice.domain
 
-interface BaseDomainRepository<ID, T> {
+import java.util.UUID
 
+interface BaseDomainRepository<ID, T> {
     fun save(domain: T): T
-    fun findAll(): List<T>
     fun findById(id: ID): T?
     fun deleteById(id: ID)
-    fun findAllByPages(request: PageRequest): PageResponse<T>
+    fun findAllByPages(request: PageRequest, userId: UUID? = null): PageResponse<T>
 }

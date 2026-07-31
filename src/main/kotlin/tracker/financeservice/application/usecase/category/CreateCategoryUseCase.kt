@@ -7,6 +7,7 @@ import tracker.financeservice.application.usecase.UseCase
 import tracker.financeservice.application.usecase.category.commands.CreateCategoryCommand
 import tracker.financeservice.domain.category.Category
 import tracker.financeservice.domain.category.CategoryRepository
+import tracker.financeservice.domain.transaction.TransactionType
 import java.util.UUID
 
 //@Service
@@ -20,7 +21,12 @@ class CreateCategoryUseCase(private val categoryRepository: CategoryRepository)
         if (categoryRepository.existsByName(inboundCommand.name))
             throw CategoryAlreadyExistsException()
 
-        val newCategory = Category(id = UUID.randomUUID(), name = inboundCommand.name)
+        val newCategory = Category(
+            id = UUID.randomUUID(),
+            name = inboundCommand.name,
+            userId = inboundCommand.userId,
+            type = TransactionType.valueOf(inboundCommand.type)
+        )
         return categoryRepository.save(newCategory)
     }
 }

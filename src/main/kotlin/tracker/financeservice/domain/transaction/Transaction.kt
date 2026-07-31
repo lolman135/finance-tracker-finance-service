@@ -1,6 +1,7 @@
 package tracker.financeservice.domain.transaction
 
 import java.time.LocalDateTime
+import java.util.Currency
 import java.util.UUID
 
 data class Transaction(
@@ -9,7 +10,9 @@ data class Transaction(
     val description: String,
     val categoryId: UUID,
     val accountId: UUID,
+    val userId: UUID,
     val amount: Long,
+    val currency: String,
     val createdAt: LocalDateTime
 )
 

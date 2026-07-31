@@ -6,7 +6,7 @@ import java.util.UUID
 
 data class Account(
     val id: UUID,
-    val name: String?,
+    val name: String,
     val balance: Long,
     val currency: String = "USD",
     val userId: UUID,
@@ -16,12 +16,16 @@ data class Account(
         return copy(name = newName)
     }
 
-    fun applyTransaction(transaction: Transaction): Account {
-        val newBalance = when(transaction.type){
-            TransactionType.INCOME -> balance + transaction.amount
-            TransactionType.EXPENSE -> balance - transaction.amount
+    fun applyTransaction(convertedAmount: Long, type: TransactionType): Account {
+        val newBalance = when(type){
+            TransactionType.INCOME -> balance + convertedAmount
+            TransactionType.EXPENSE -> balance - convertedAmount
         }
+        return copy(balance = newBalance)
+    }
 
+    fun correctBalance(newBalance: Long): Account{
+        // You can set balance less than zero because several banks allows you to have negative balance
         return copy(balance = newBalance)
     }
 }
